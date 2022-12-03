@@ -8,7 +8,7 @@ import { DELAY } from "@/constants"
 
 /**
  * @description top level error handler - within the scope of this tech test - it iwii just log the errors, BUT, if we scale up further - possibly: will display message ui as snackbar, and invoke some error logging api
- * @param {unknown} error a thrown eror, normally expected to be either instance of Error or AxiosError
+ * @param {unknown} error a thrown eror, ideally expected to be an instance of `Error`
  * @returns {undefined} void/effect function
  */
 const queryErrorHandler = (error: unknown) => {

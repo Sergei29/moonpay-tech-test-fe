@@ -1,23 +1,16 @@
 import { dehydrate, useQuery } from "@tanstack/react-query"
 import type { NextPage, GetStaticProps } from "next"
-import { ParsedUrlQuery } from "querystring"
 import Head from "next/head"
 
 import { generateQueryClient } from "@/lib/queryClient"
 import { fetchMoonpayCurrencies } from "@/lib/api"
 import { queryKeys, DELAY } from "@/constants"
 
-type PageParams = {
-  id: string
-} & ParsedUrlQuery
-
-type Props = Record<string, any>
-
 /**
  * @description static props - we're prefetching here the currencies list, which will give us zero loading time while we fetch on client side ( bettter UX)
- * @returns {object} server side props including react query dehydrated state, bearing the prefetched data.
+ * @returns {Promise<object>} static gen props including react query dehydrated state, bearing the prefetched data.
  */
-export const getStaticProps: GetStaticProps<Props, PageParams> = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const queryClient = generateQueryClient()
   await queryClient.prefetchQuery(
     [queryKeys.currencies],
