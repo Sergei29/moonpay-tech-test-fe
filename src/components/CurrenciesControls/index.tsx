@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, Box, Chip } from "@mui/material"
+import { Tooltip, Box, Chip, Switch, Typography } from "@mui/material"
 
 type Props = {
   isAllowedInUs: boolean
@@ -15,26 +15,59 @@ const CurrenciesControls = ({
   toggleSupportedInUs,
   toggleSupportInTestMode,
   currentTotal,
-}: Props): JSX.Element => {
-  return (
-    <Box sx={{ my: 2, display: "flex", alignItems: "center", columnGap: 2 }}>
-      <Button
-        onClick={toggleSupportedInUs}
-        sx={{ textTransform: "none", minWidth: 200 }}
-        variant="outlined"
+}: Props): JSX.Element => (
+  <Box
+    sx={{
+      my: 2,
+      display: "flex",
+      flexDirection: {
+        xs: "column",
+        md: "row",
+      },
+      alignItems: {
+        md: "center",
+      },
+      columnGap: 2,
+    }}
+  >
+    <Box sx={{ minWidth: 250, display: "flex", alignItems: "center" }}>
+      <Typography>Allowed In US: </Typography>
+      <Tooltip
+        title={`switch to display ${isAllowedInUs ? "all" : "only in US"}`}
       >
-        {isAllowedInUs ? "allowed in US Only" : "all"}
-      </Button>
-      <Button
-        onClick={toggleSupportInTestMode}
-        sx={{ textTransform: "none", minWidth: 200 }}
-        variant="outlined"
-      >
-        {isSupportedInTestMode ? "supports test mode" : "all"}
-      </Button>
-      <Chip label={`Results found: ${currentTotal}`} color="primary" />
+        <Switch
+          checked={isAllowedInUs}
+          onChange={toggleSupportedInUs}
+          inputProps={{ "aria-label": "controlled" }}
+        />
+      </Tooltip>
+      <Typography>{isAllowedInUs ? "only" : "all"}</Typography>
     </Box>
-  )
-}
+    <Box sx={{ minWidth: 250, display: "flex", alignItems: "center" }}>
+      <Typography>Supported in test mode</Typography>
+      <Tooltip
+        title={`switch to display ${
+          isSupportedInTestMode ? "all" : "only in test mode"
+        }`}
+      >
+        <Switch
+          checked={isSupportedInTestMode}
+          onChange={toggleSupportInTestMode}
+          inputProps={{ "aria-label": "controlled" }}
+        />
+      </Tooltip>
+      <Typography>{isSupportedInTestMode ? "only" : "all"}</Typography>
+    </Box>
+    <Chip
+      label={`Results found: ${currentTotal}`}
+      color="primary"
+      sx={{
+        ml: {
+          md: "auto",
+        },
+      }}
+    />
+  </Box>
+)
 
 export default CurrenciesControls
