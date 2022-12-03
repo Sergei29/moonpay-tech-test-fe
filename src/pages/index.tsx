@@ -1,6 +1,6 @@
 import { dehydrate } from "@tanstack/react-query"
 import type { NextPage, GetStaticProps } from "next"
-import { Typography, Button } from "@mui/material"
+import { Typography, Button, Box, Chip } from "@mui/material"
 import Head from "next/head"
 
 import CurrenciesList from "@/components/CurrenciesList"
@@ -34,8 +34,14 @@ export const getStaticProps: GetStaticProps = async () => {
  * @returns {JSX.Element} homepage markup
  */
 const HomePage: NextPage = () => {
-  const { data, isError, isAllowedInUs, toggleSupportedInUs } =
-    useGetCurrencies()
+  const {
+    data,
+    isError,
+    isAllowedInUs,
+    isSupportedInTestMode,
+    toggleSupportedInUs,
+    toggleSupportInTestMode,
+  } = useGetCurrencies()
 
   return (
     <>
@@ -62,15 +68,16 @@ const HomePage: NextPage = () => {
         Moonpay.com Currencies
       </Typography>
       {data ? (
-        <Button
-          onClick={toggleSupportedInUs}
-          sx={{ textTransform: "none", my: 2, minWidth: 200 }}
-          variant="outlined"
-        >
-          {isAllowedInUs ? "allowed in US Only" : "all"}
-        </Button>
+        <CurrenciesList currenciesList={data}>
+          <CurrenciesList.Controls
+            isAllowedInUs={isAllowedInUs}
+            isSupportedInTestMode={isSupportedInTestMode}
+            toggleSupportedInUs={toggleSupportedInUs}
+            toggleSupportInTestMode={toggleSupportInTestMode}
+            currentTotal={data.length}
+          />
+        </CurrenciesList>
       ) : null}
-      {data ? <CurrenciesList currenciesList={data} /> : null}
       {isError && (
         <MessageDisplay message="Failed to get currencies list." type="error" />
       )}

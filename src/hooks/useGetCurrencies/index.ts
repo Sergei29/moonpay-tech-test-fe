@@ -5,17 +5,27 @@ import { fetchMoonpayCurrencies, isEmpty, compose } from "@/lib/api"
 import { queryKeys } from "@/constants"
 import { Currency } from "@/types"
 
-const filterCurrenciesSupportedInUs = (
-  isSupported: boolean,
-  currencies?: Currency[]
-) =>
-  currencies
-    ? currencies.filter((currentCurrency) => {
-        if (isEmpty(currentCurrency.isSupportedInUS))
-          return true === isSupported
-        return currentCurrency.isSupportedInUS === isSupported
-      })
-    : currencies
+const getFilterCurrenciesSupportedInUs =
+  (isSupported: boolean) => (currencies: Currency[]) =>
+    currencies.filter((currentCurrency) => {
+      if (isEmpty(currentCurrency.isSupportedInUS)) return false === isSupported
+
+      return isSupported
+        ? currentCurrency.isSupportedInUS === isSupported
+        : true
+    })
+
+const getFilterCurrenciesSupportInTestMode =
+  (isSupported: boolean) => (currencies: Currency[]) =>
+    currencies.filter((currentCurrency) => {
+      if (isEmpty(currentCurrency.supportsTestMode)) {
+        return false === isSupported
+      }
+
+      return isSupported
+        ? currentCurrency.supportsTestMode === isSupported
+        : true
+    })
 
 /**
  * @description custom hook, fetches and filters the currencies list
@@ -23,6 +33,8 @@ const filterCurrenciesSupportedInUs = (
  */
 export const useGetCurrencies = () => {
   const [isAllowedInUs, setIsAllowedInUs] = useState<boolean>(true)
+  const [isSupportedInTestMode, setIsSupportedInTestMode] =
+    useState<boolean>(true)
 
   const { data: currenciesList, ...restQueryResult } = useQuery({
     queryKey: [queryKeys.currencies],
@@ -31,10 +43,20 @@ export const useGetCurrencies = () => {
 
   const toggleSupportedInUs = () => setIsAllowedInUs((current) => !current)
 
+  const toggleSupportInTestMode = () =>
+    setIsSupportedInTestMode((current) => !current)
+
   return {
-    data: filterCurrenciesSupportedInUs(isAllowedInUs, currenciesList),
+    data: currenciesList
+      ? compose(
+          getFilterCurrenciesSupportInTestMode(isSupportedInTestMode),
+          getFilterCurrenciesSupportedInUs(isAllowedInUs)
+        )(currenciesList)
+      : currenciesList,
     isAllowedInUs,
+    isSupportedInTestMode,
     toggleSupportedInUs,
+    toggleSupportInTestMode,
     ...restQueryResult,
   }
 }
