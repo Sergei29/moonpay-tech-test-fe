@@ -36,3 +36,16 @@ export const isEmpty = (value: unknown) => {
 
   return false
 }
+
+type AnyFunc = <T = unknown>(a: T) => unknown
+
+/**
+ * @description compose function, can be used the one from `lodash` - but I didn't want to bring the whole lodash library just for one function use, if we would scale up this project certainly good idea to consider `lodash` instead of re-creating the same function.
+ */
+export const compose =
+  (...functionsList: AnyFunc[]) =>
+  (initialValue: unknown) =>
+    functionsList.reduceRight(
+      (currentValue, currentFunction) => currentFunction(currentValue),
+      initialValue
+    )

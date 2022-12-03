@@ -15,23 +15,18 @@ const getTextContent = ({
 }: {
   isSupportedInUS?: boolean
   supportsTestMode?: boolean
-}) => {
-  let supportedInUSText = "Allowed"
-  let supportsTestModeText = "Supported"
-
-  if (isEmpty(isSupportedInUS)) {
-    supportedInUSText = "N/A"
-  } else if (isSupportedInUS === false) {
-    supportedInUSText = "Not Allowed"
-  }
-  if (isEmpty(supportsTestMode)) {
-    supportsTestModeText = "N/A"
-  } else if (supportsTestMode === false) {
-    supportsTestModeText = "Not supported"
-  }
-
-  return { supportedInUSText, supportsTestModeText }
-}
+}) => ({
+  supportedInUSText: isEmpty(isSupportedInUS)
+    ? "N/A"
+    : isSupportedInUS
+    ? "YES"
+    : "NO",
+  supportsTestModeText: isEmpty(supportsTestMode)
+    ? "N/A"
+    : supportsTestMode
+    ? "YES"
+    : "NO",
+})
 
 type Props = {
   currencyItem: Currency

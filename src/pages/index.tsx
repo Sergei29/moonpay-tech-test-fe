@@ -1,6 +1,6 @@
-import { dehydrate, useQuery } from "@tanstack/react-query"
+import { dehydrate } from "@tanstack/react-query"
 import type { NextPage, GetStaticProps } from "next"
-import { Typography } from "@mui/material"
+import { Typography, Button } from "@mui/material"
 import Head from "next/head"
 
 import CurrenciesList from "@/components/CurrenciesList"
@@ -8,6 +8,7 @@ import MessageDisplay from "@/components/MessageDisplay"
 import { generateQueryClient } from "@/lib/queryClient"
 import { fetchMoonpayCurrencies } from "@/lib/api"
 import { queryKeys, DELAY } from "@/constants"
+import { useGetCurrencies } from "@/hooks/useGetCurrencies"
 
 /**
  * @description static props - we're prefetching here the currencies list, which will give us zero loading time while we fetch on client side ( bettter UX)
@@ -33,10 +34,8 @@ export const getStaticProps: GetStaticProps = async () => {
  * @returns {JSX.Element} homepage markup
  */
 const HomePage: NextPage = () => {
-  const { data, isError } = useQuery({
-    queryKey: [queryKeys.currencies],
-    queryFn: fetchMoonpayCurrencies,
-  })
+  const { data, isError, isAllowedInUs, toggleSupportedInUs } =
+    useGetCurrencies()
 
   return (
     <>
@@ -62,6 +61,15 @@ const HomePage: NextPage = () => {
       >
         Moonpay.com Currencies
       </Typography>
+      {data ? (
+        <Button
+          onClick={toggleSupportedInUs}
+          sx={{ textTransform: "none", my: 2, minWidth: 200 }}
+          variant="outlined"
+        >
+          {isAllowedInUs ? "allowed in US Only" : "all"}
+        </Button>
+      ) : null}
       {data ? <CurrenciesList currenciesList={data} /> : null}
       {isError && (
         <MessageDisplay message="Failed to get currencies list." type="error" />
