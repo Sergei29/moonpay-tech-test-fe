@@ -62,13 +62,4 @@ export const theme = createTheme({
     inverse: "#cfd6e1",
     accent: "#000",
   },
-  typography: {
-    fontFamily: [
-      "Open Sans Condensed",
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-    ].join(","),
-  },
 })
