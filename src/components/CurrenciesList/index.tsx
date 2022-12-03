@@ -26,7 +26,13 @@ const CurrenciesList = ({
 
   return (
     <Box
-      sx={{ display: "flex", flexWrap: "wrap", gap: 1, ...sx }}
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        gap: 1,
+        ...sx,
+      }}
       {...restBoxProps}
     >
       {currenciesList.map((currencyItem) => (

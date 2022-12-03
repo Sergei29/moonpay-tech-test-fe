@@ -44,7 +44,22 @@ const HomePage: NextPage = () => {
         <title>Tech test Moonpay.com | Homepage</title>
       </Head>
 
-      <Typography variant="h4" component="h1" sx={{ py: 3 }}>
+      <Typography
+        variant="h4"
+        component="h1"
+        sx={{
+          py: 3,
+          fontWeight: 600,
+          fontSize: {
+            xs: "1.2rem",
+            sm: "2.125rem",
+          },
+          textAlign: {
+            xs: "center",
+            sm: "left",
+          },
+        }}
+      >
         Moonpay.com Currencies
       </Typography>
       {data ? <CurrenciesList currenciesList={data} /> : null}

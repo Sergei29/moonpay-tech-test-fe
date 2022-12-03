@@ -50,7 +50,16 @@ const CurrencyCard = ({ currencyItem }: Props): JSX.Element => {
   })
 
   return (
-    <Card sx={{ width: "24%" }}>
+    <Card
+      sx={{
+        width: {
+          lg: "24%",
+          md: "29%",
+          sm: "49%",
+          xs: "100%",
+        },
+      }}
+    >
       <CardContent>
         <Typography
           variant="h5"
