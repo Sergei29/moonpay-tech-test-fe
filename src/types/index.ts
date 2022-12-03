@@ -18,20 +18,21 @@ export type Metadata = {
   networkCode: string
 }
 
-export type Currency = CurrencyBase & {
-  addressRegex: string | null
-  testnetAddressRegex: string | null
-  supportsAddressTag: boolean
-  addressTagRegex: string | null
-  supportsTestMode: boolean
-  supportsLiveMode: boolean
-  isSuspended: boolean
-  isSupportedInUS: boolean
-  notAllowedUSStates: string[]
-  notAllowedCountries: string[]
-  isSellSupported: boolean
-  confirmationsRequired: number | null
-  minSellAmount: number | null
-  maxSellAmount: number | null
-  metadata: Metadata
-}
+export type Currency = CurrencyBase &
+  Partial<{
+    addressRegex: string | null
+    testnetAddressRegex: string | null
+    supportsAddressTag: boolean
+    addressTagRegex: string | null
+    supportsTestMode: boolean
+    supportsLiveMode: boolean
+    isSuspended: boolean
+    isSupportedInUS: boolean
+    notAllowedUSStates: string[]
+    notAllowedCountries: string[]
+    isSellSupported: boolean
+    confirmationsRequired: number | null
+    minSellAmount: number | null
+    maxSellAmount: number | null
+    metadata: Metadata
+  }>

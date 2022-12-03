@@ -1,7 +1,10 @@
 import { dehydrate, useQuery } from "@tanstack/react-query"
 import type { NextPage, GetStaticProps } from "next"
+import { Typography } from "@mui/material"
 import Head from "next/head"
 
+import CurrenciesList from "@/components/CurrenciesList"
+import MessageDisplay from "@/components/MessageDisplay"
 import { generateQueryClient } from "@/lib/queryClient"
 import { fetchMoonpayCurrencies } from "@/lib/api"
 import { queryKeys, DELAY } from "@/constants"
@@ -30,25 +33,24 @@ export const getStaticProps: GetStaticProps = async () => {
  * @returns {JSX.Element} homepage markup
  */
 const HomePage: NextPage = () => {
-  const { data, isLoading, error } = useQuery({
+  const { data, isError } = useQuery({
     queryKey: [queryKeys.currencies],
     queryFn: fetchMoonpayCurrencies,
   })
 
-  console.log("currencies: ", data?.slice(0, 2))
-
   return (
     <>
       <Head>
-        <title>Tech test Moonpay.com</title>
-        <meta
-          name="description"
-          content="Technical assignment for Front End by Moonpay.com"
-        />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Tech test Moonpay.com | Homepage</title>
       </Head>
 
-      <h1>Moonpay.com App</h1>
+      <Typography variant="h4" component="h1" sx={{ py: 3 }}>
+        Moonpay.com Currencies
+      </Typography>
+      {data ? <CurrenciesList currenciesList={data} /> : null}
+      {isError && (
+        <MessageDisplay message="Failed to get currencies list." type="error" />
+      )}
     </>
   )
 }
