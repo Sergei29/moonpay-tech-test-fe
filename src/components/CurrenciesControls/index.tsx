@@ -86,32 +86,34 @@ const CurrenciesControls = ({
     >
       <Typography sx={{ fontSize: "0.8rem" }}>Sort by: </Typography>
       <ButtonGroup variant="outlined">
-        <Tooltip title="sort by name">
-          <Button
-            disabled={keyNameSortedBy === "name"}
-            onClick={toggleSortByNameOrCode}
-            sx={{ px: 1, py: 0, fontSize: "0.8rem", textTransform: "none" }}
-          >
-            name
-          </Button>
-        </Tooltip>
-        <Tooltip title="sort by code">
-          <Button
-            disabled={keyNameSortedBy === "code"}
-            onClick={toggleSortByNameOrCode}
-            sx={{ px: 1, py: 0, fontSize: "0.8rem", textTransform: "none" }}
-          >
-            code
-          </Button>
-        </Tooltip>
-        <Tooltip title="shuffle list at random">
-          <Button
-            onClick={toggleShuffleCurrencies}
-            sx={{ px: 1, py: 0, fontSize: "0.8rem", textTransform: "none" }}
-          >
-            shuffle list
-          </Button>
-        </Tooltip>
+        <Button
+          disabled={keyNameSortedBy === "name"}
+          onClick={toggleSortByNameOrCode}
+          sx={{ px: 1, py: 0, fontSize: "0.8rem", textTransform: "none" }}
+        >
+          <Tooltip title="sort by name">
+            <Box component="span">name</Box>
+          </Tooltip>
+        </Button>
+
+        <Button
+          disabled={keyNameSortedBy === "code"}
+          onClick={toggleSortByNameOrCode}
+          sx={{ px: 1, py: 0, fontSize: "0.8rem", textTransform: "none" }}
+        >
+          <Tooltip title="sort by code">
+            <Box component="span">code</Box>
+          </Tooltip>
+        </Button>
+
+        <Button
+          onClick={toggleShuffleCurrencies}
+          sx={{ px: 1, py: 0, fontSize: "0.8rem", textTransform: "none" }}
+        >
+          <Tooltip title="shuffle list at random">
+            <Box component="span">shuffle list</Box>
+          </Tooltip>
+        </Button>
       </ButtonGroup>
     </Box>
     <Chip

@@ -58,6 +58,7 @@ const HomePage: NextPage = () => {
         sx={{
           py: 3,
           fontWeight: 600,
+          fontStyle: "italic",
           fontSize: {
             xs: "1.2rem",
             sm: "2.125rem",
@@ -67,6 +68,7 @@ const HomePage: NextPage = () => {
             sm: "left",
           },
         }}
+        color="primary"
       >
         Moonpay.com Currencies
       </Typography>
