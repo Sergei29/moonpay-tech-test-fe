@@ -39,12 +39,12 @@ N/A ( I have been instructed to engage with the FE task only )
 #### Then when I can add new code in more/less controlled manner, I would:
 
 - refactor my current code ( for example: my custom hook's logic - smells, currently I find it does too many things, I would like to think how to shrink it down, other thing - List components: one or two are too large to fulfill their SRP and also I still drill some props - so need to review the architectural approach there & possibly something else. )
-- made the existing code reviewed by team members (😃 who might be available please ), further improve it.
-- QA the existing UI: what can be imporved or re-made ?
+- made the existing code reviewed by team members (😃 who might be available please ), improve it further.
+- QA the existing UI: what needs to be re-made, fixed or further improved ?
 
 #### Then, possibly I would review my fetching strategy:
 
-- client side: what do I fetch and when, what/when to cache/revalidate,
+- client side: what do I fetch/cache/revalidate and when; what shall I pre-fetch ssr/ssg what shall I fetch client-side,
   because currenntly I fetch the whole list of 150+ items, which I believe can be even longer later as application grows.
 - api-side: see what are the chances to fetch: the paginated list, sort and filter params, etc. ?
 - api-side: see what are the chances to receive a list of currencies that have exactly same interface(data structure).
