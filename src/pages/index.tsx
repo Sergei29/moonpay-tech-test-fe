@@ -1,6 +1,6 @@
 import { dehydrate } from "@tanstack/react-query"
 import type { NextPage, GetStaticProps } from "next"
-import { Typography, Button, Box, Chip } from "@mui/material"
+import { Typography } from "@mui/material"
 import Head from "next/head"
 
 import CurrenciesList from "@/components/CurrenciesList"
@@ -39,6 +39,8 @@ const HomePage: NextPage = () => {
     isError,
     isAllowedInUs,
     isSupportedInTestMode,
+    keyNameSortedBy,
+    toggleSortByNameOrCode,
     toggleSupportedInUs,
     toggleSupportInTestMode,
   } = useGetCurrencies()
@@ -72,6 +74,8 @@ const HomePage: NextPage = () => {
           <CurrenciesList.Controls
             isAllowedInUs={isAllowedInUs}
             isSupportedInTestMode={isSupportedInTestMode}
+            keyNameSortedBy={keyNameSortedBy}
+            toggleSortByNameOrCode={toggleSortByNameOrCode}
             toggleSupportedInUs={toggleSupportedInUs}
             toggleSupportInTestMode={toggleSupportInTestMode}
             currentTotal={data.length}

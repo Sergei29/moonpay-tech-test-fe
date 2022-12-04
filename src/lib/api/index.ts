@@ -18,7 +18,7 @@ export const fetchMoonpayCurrencies = async (): Promise<Currency[]> => {
 }
 
 /**
- * @description util function to ascertain if the value is empty (`null`, `undefined`, `''`, `{}`, `[]`) or not
+ * @description util function to ascertain if the value is empty (`null`, `undefined`, `''`, `{}`, `[]`) or not, to note : `isMepty` can also be taken from `lodash`, however the other one has slightly different behaviour, and also for the sake of the tech test I have not brought the whole package just for use of 2 util functions
  * @param {unknown} value value to verify
  * @returns {boolean}
  */

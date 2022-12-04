@@ -1,9 +1,19 @@
 import React from "react"
-import { Tooltip, Box, Chip, Switch, Typography } from "@mui/material"
+import {
+  Tooltip,
+  Box,
+  Chip,
+  Switch,
+  Typography,
+  Button,
+  ButtonGroup,
+} from "@mui/material"
 
 type Props = {
   isAllowedInUs: boolean
   isSupportedInTestMode: boolean
+  keyNameSortedBy: "code" | "name"
+  toggleSortByNameOrCode: () => void
   toggleSupportedInUs: () => void
   toggleSupportInTestMode: () => void
   currentTotal: number
@@ -12,6 +22,8 @@ type Props = {
 const CurrenciesControls = ({
   isAllowedInUs,
   isSupportedInTestMode,
+  keyNameSortedBy,
+  toggleSortByNameOrCode,
   toggleSupportedInUs,
   toggleSupportInTestMode,
   currentTotal,
@@ -27,11 +39,11 @@ const CurrenciesControls = ({
       alignItems: {
         md: "center",
       },
-      columnGap: 2,
+      gap: 2,
     }}
   >
     <Box sx={{ minWidth: 250, display: "flex", alignItems: "center" }}>
-      <Typography>Allowed In US: </Typography>
+      <Typography sx={{ fontSize: "0.8rem" }}>Allowed In US: </Typography>
       <Tooltip
         title={`switch to display ${isAllowedInUs ? "all" : "only in US"}`}
       >
@@ -44,7 +56,9 @@ const CurrenciesControls = ({
       <Typography>{isAllowedInUs ? "only" : "all"}</Typography>
     </Box>
     <Box sx={{ minWidth: 250, display: "flex", alignItems: "center" }}>
-      <Typography>Supported in test mode</Typography>
+      <Typography sx={{ fontSize: "0.8rem" }}>
+        Supported in test mode
+      </Typography>
       <Tooltip
         title={`switch to display ${
           isSupportedInTestMode ? "all" : "only in test mode"
@@ -56,7 +70,39 @@ const CurrenciesControls = ({
           inputProps={{ "aria-label": "controlled" }}
         />
       </Tooltip>
-      <Typography>{isSupportedInTestMode ? "only" : "all"}</Typography>
+      <Typography sx={{ fontSize: "0.8rem" }}>
+        {isSupportedInTestMode ? "only" : "all"}
+      </Typography>
+    </Box>
+    <Box
+      sx={{
+        minWidth: 250,
+        display: "flex",
+        columnGap: 2,
+        alignItems: "center",
+      }}
+    >
+      <Typography sx={{ fontSize: "0.8rem" }}>Sort by: </Typography>
+      <ButtonGroup variant="outlined">
+        <Tooltip title="sort by name">
+          <Button
+            disabled={keyNameSortedBy === "name"}
+            onClick={toggleSortByNameOrCode}
+            sx={{ px: 1, py: 0, fontSize: "0.8rem", textTransform: "none" }}
+          >
+            name
+          </Button>
+        </Tooltip>
+        <Tooltip title="sort by code">
+          <Button
+            disabled={keyNameSortedBy === "code"}
+            onClick={toggleSortByNameOrCode}
+            sx={{ px: 1, py: 0, fontSize: "0.8rem", textTransform: "none" }}
+          >
+            code
+          </Button>
+        </Tooltip>
+      </ButtonGroup>
     </Box>
     <Chip
       label={`Results found: ${currentTotal}`}
@@ -64,6 +110,9 @@ const CurrenciesControls = ({
       sx={{
         ml: {
           md: "auto",
+        },
+        "& > label": {
+          fontSize: "0.8rem",
         },
       }}
     />

@@ -32,3 +32,20 @@ export const getFilterCurrenciesSupportInTestMode =
         ? currentCurrency.supportsTestMode === isSupported
         : true
     })
+
+/**
+ * @description generates a sort function
+ * @param {boolean} isSortingByName condition to sort by
+ * @returns {Function} sort function, that sort the currencies either by name or code
+ */
+export const getSortByCurrencyNameOrCode =
+  (isSortingByName: boolean) => (currencies: Currency[]) =>
+    currencies.sort((currentCurrency, nextCurrency) => {
+      const keyNameToSortBy = isSortingByName ? "name" : "code"
+      const currentValue = currentCurrency[keyNameToSortBy]
+      const nextValue = nextCurrency[keyNameToSortBy]
+
+      if (currentValue < nextValue) return -1
+      if (currentValue > nextValue) return 1
+      return 0
+    })
