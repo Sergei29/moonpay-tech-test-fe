@@ -1,4 +1,4 @@
-import { isEmpty } from "@/lib/api"
+import { isEmpty, shuffleAnArray } from "@/lib/api"
 import { Currency } from "@/types"
 
 /**
@@ -49,3 +49,12 @@ export const getSortByCurrencyNameOrCode =
       if (currentValue > nextValue) return 1
       return 0
     })
+
+/**
+ * @description generates a shuffle array function
+ * @param {boolean} isSortingByName condition whether to shuffle or not
+ * @returns {Function} shuffle function, that mixes the currencies items at random
+ */
+export const getShuffleCurrencies =
+  (isToShuffle: boolean) => (currencies: Currency[]) =>
+    isToShuffle ? shuffleAnArray(currencies) : currencies

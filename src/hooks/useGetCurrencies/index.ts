@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useQuery } from "@tanstack/react-query"
 
 import { fetchMoonpayCurrencies, compose } from "@/lib/api"
@@ -8,6 +8,7 @@ import {
   getFilterCurrenciesSupportedInUs,
   getFilterCurrenciesSupportInTestMode,
   getSortByCurrencyNameOrCode,
+  getShuffleCurrencies,
 } from "./utils"
 
 /**
@@ -21,6 +22,7 @@ export const useGetCurrencies = () => {
   const [keyNameSortedBy, setKeyNameSortedBy] = useState<"name" | "code">(
     "code"
   )
+  const [isRandomShuffle, setIsRandomShuffle] = useState<boolean>(false)
 
   const { data: currenciesList, ...restQueryResult } = useQuery({
     queryKey: [queryKeys.currencies],
@@ -35,9 +37,21 @@ export const useGetCurrencies = () => {
   const toggleSortByNameOrCode = () =>
     setKeyNameSortedBy((current) => (current === "name" ? "code" : "name"))
 
+  const toggleShuffleCurrencies = () =>
+    setIsRandomShuffle((current) => !current)
+
+  /**
+   * @description an effect to reset the boolean state back to `false`
+   * in order to acheive one-off shuffle action - however the approach is open to debate, reset state within the functions handlers above for example or other...
+   */
+  useEffect(() => {
+    setIsRandomShuffle(false)
+  }, [keyNameSortedBy, isSupportedInTestMode, isAllowedInUs])
+
   return {
     data: !!currenciesList
       ? compose(
+          getShuffleCurrencies(isRandomShuffle),
           getSortByCurrencyNameOrCode(keyNameSortedBy === "name"),
           getFilterCurrenciesSupportInTestMode(isSupportedInTestMode),
           getFilterCurrenciesSupportedInUs(isAllowedInUs)
@@ -49,6 +63,7 @@ export const useGetCurrencies = () => {
     toggleSupportedInUs,
     toggleSupportInTestMode,
     toggleSortByNameOrCode,
+    toggleShuffleCurrencies,
     ...restQueryResult,
   }
 }

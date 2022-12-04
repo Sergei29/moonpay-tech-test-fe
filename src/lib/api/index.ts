@@ -49,3 +49,14 @@ export const compose =
       (currentValue, currentFunction) => currentFunction(currentValue),
       initialValue
     )
+
+/**
+ * @description util fn to shuffle an array items at random, can be also taken from the `lodash` library ( even - shoud be taken on the production project )
+ * @param {Array} listOfItems array of items
+ * @returns {Array} shuffled array of items
+ */
+export const shuffleAnArray = <T>(listOfItems: T[]) =>
+  listOfItems
+    .map((current) => ({ order: Math.random(), ...current }))
+    .sort((currentItem, nextItem) => currentItem.order - nextItem.order)
+    .map(({ order, ...restOfCurrentItem }) => ({ ...restOfCurrentItem }))

@@ -16,6 +16,7 @@ type Props = {
   toggleSortByNameOrCode: () => void
   toggleSupportedInUs: () => void
   toggleSupportInTestMode: () => void
+  toggleShuffleCurrencies: () => void
   currentTotal: number
 }
 
@@ -26,6 +27,7 @@ const CurrenciesControls = ({
   toggleSortByNameOrCode,
   toggleSupportedInUs,
   toggleSupportInTestMode,
+  toggleShuffleCurrencies,
   currentTotal,
 }: Props): JSX.Element => (
   <Box
@@ -100,6 +102,14 @@ const CurrenciesControls = ({
             sx={{ px: 1, py: 0, fontSize: "0.8rem", textTransform: "none" }}
           >
             code
+          </Button>
+        </Tooltip>
+        <Tooltip title="shuffle list at random">
+          <Button
+            onClick={toggleShuffleCurrencies}
+            sx={{ px: 1, py: 0, fontSize: "0.8rem", textTransform: "none" }}
+          >
+            shuffle list
           </Button>
         </Tooltip>
       </ButtonGroup>

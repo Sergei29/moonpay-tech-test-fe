@@ -43,6 +43,7 @@ const HomePage: NextPage = () => {
     toggleSortByNameOrCode,
     toggleSupportedInUs,
     toggleSupportInTestMode,
+    toggleShuffleCurrencies,
   } = useGetCurrencies()
 
   return (
@@ -78,6 +79,7 @@ const HomePage: NextPage = () => {
             toggleSortByNameOrCode={toggleSortByNameOrCode}
             toggleSupportedInUs={toggleSupportedInUs}
             toggleSupportInTestMode={toggleSupportInTestMode}
+            toggleShuffleCurrencies={toggleShuffleCurrencies}
             currentTotal={data.length}
           />
         </CurrenciesList>
