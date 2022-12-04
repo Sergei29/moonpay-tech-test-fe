@@ -48,7 +48,7 @@ const CurrencyCard = ({ currencyItem }: Props): JSX.Element => {
     <Card
       sx={{
         width: {
-          lg: "24%",
+          lg: "29%",
           md: "29%",
           sm: "49%",
           xs: "100%",
