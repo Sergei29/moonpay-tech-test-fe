@@ -38,7 +38,7 @@ N/A ( I have been instructed to engage with the FE task only )
 
 #### Then when I can add new code in more/less controlled manner, I would:
 
-- refactor my current code ( for example: my custom hook's logic - smells, currently I find it does too many things, I would like to think how to shrink it down, or at List components, one or two are too large to fulfill their SRP and also I still drill some props - so need to review the architectural approach there & possibly something else. )
+- refactor my current code ( for example: my custom hook's logic - smells, currently I find it does too many things, I would like to think how to shrink it down, other thing - List components: one or two are too large to fulfill their SRP and also I still drill some props - so need to review the architectural approach there & possibly something else. )
 - made the existing code reviewed by team members (😃 who might be available please ), further improve it.
 - QA the existing UI: what can be imporved or re-made ?
 
