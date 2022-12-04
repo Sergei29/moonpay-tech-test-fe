@@ -18,8 +18,8 @@ N/A ( I have been instructed to engage with the FE task only )
 
 ### Q) Any other comments we should read before evaluating your solution?
 
-- each unit ( component, hook, util function ) has a jsDoc comment to it. Is is arguable wherer the jsDoc is needed while using the typescript,
-  however, I would think that I may add the jsDoc comments - just to explain my motivation why do I have each of a given unit in place.
+- each unit ( component, hook, util function ) has a jsDoc comment to it. Is is arguable whether the jsDoc is needed while using the typescript,
+  however, I would think that I may add the jsDoc comments - just to explain my motivation on why have I put each given unit in place.
 - the solution has been applied given a reasonable amount of time that can be alllocated to the candidate's technical assignment, by saying that
   I am implying that for a real task of a same comlexity, which is not much, but much likely it would have been allocated at least 3 scrum points and
   broken down to into several tickets. ( as you can currenly see - there is a number of tasks that still require here, including unit tests min coverage )
@@ -32,11 +32,11 @@ N/A ( I have been instructed to engage with the FE task only )
 
 #### Before I scale-up any further, I would:
 
-- Install and setup testing libraries ( just + RTL packages ), unit tests minumum coverage
+- Install and setup testing libraries ( just Jest + RTL packages ), unit tests minumum coverage
 - Install and setup pre-commit runner ( eg. husky )
-- Enhance my current CI-CD ( which currently the only one part provided by Vercel), but I would like to add a PL by Guthub actions or Circle-CI or other of team choiice.
+- Enhance my current CI-CD ( the the only one currenly - provided by Vercel ), but I would like to add PL settings by Guthub actions or Circle-CI or other solution of team's choice.
 
-#### Then when I can add new code in +/- controlled manner, I would:
+#### Then when I can add new code in more/less controlled manner, I would:
 
 - refactor my current code ( for example: my custom hook's logic - smells, currently I find it does too many things, I would like to think how to shrink it down, or at List components, one or two are too large to fulfill their SRP and also I still drill some props - so need to review the architectural approach there & possibly something else. )
 - made the existing code reviewed by team members (😃 who might be available please ), further improve it.
