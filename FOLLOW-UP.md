@@ -34,7 +34,7 @@ N/A ( I have been instructed to engage with the FE task only )
 
 - Install and setup testing libraries ( just Jest + RTL packages ), unit tests minumum coverage
 - Install and setup pre-commit runner ( eg. husky )
-- Enhance my current CI-CD ( the the only one currenly - provided by Vercel ), but I would like to add PL settings by Guthub actions or Circle-CI or other solution of team's choice.
+- Enhance my current CI-CD ( the only one currenly - provided by Vercel ), I would like to add PL settings by Github actions or Circle-CI or other solution of team's choice.
 
 #### Then when I can add new code in more/less controlled manner, I would:
 
@@ -53,9 +53,9 @@ N/A ( I have been instructed to engage with the FE task only )
 
 - I have really enjoyed all parts of the task (😃 except maybe the writing this `FOLLOW-UP.md`). Why? - I generally love to write code.
 - `"Which parts are you most proud of?"`😉 - it is tempting to feel proud about something just created, BUT - I would prefer to hold off myself from being proud yet - because it helps to keep an open mind and keep critical attitude that helps ( me at least ), to learn to write better code tomorrow comparing to my code today. Also, 🚀 the pride belongs rather to:
-- the Facebook team ( React.js creators `https://reactjs.org/community/team.html`),
-- Vercel Team (Next.js, `https://nextjs.org/conf`),
-- Tanner Linsley ( Tanstack React Query `https://youtu.be/i7iqVsmcQyo`)
+- the Facebook team ([https://reactjs.org/community/team.html](https://reactjs.org/community/team.html)),
+- Vercel Next.js Team ([https://nextjs.org/conf](https://nextjs.org/conf)),
+- Tanner Linsley Tanstack React Query([The TanStack with Tanner Linsley](https://youtu.be/i7iqVsmcQyo))
 
 ### Q) Which parts did you spend the most time with? What did you find most difficult?
 
