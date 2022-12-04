@@ -37,13 +37,13 @@ export const isEmpty = (value: unknown) => {
   return false
 }
 
-type AnyFunc<T = unknown> = (a: T) => T
+type GenericFunction<T = unknown> = (a: T) => T
 
 /**
  * @description compose function, can be used the one from `lodash` - but I didn't want to bring the whole lodash library just for one function use, if we would scale up this project certainly good idea to consider `lodash` instead of re-creating the same function.
  */
 export const compose =
-  <D>(...functionsList: AnyFunc<D>[]) =>
+  <D>(...functionsList: GenericFunction<D>[]) =>
   (initialValue: D) =>
     functionsList.reduceRight(
       (currentValue, currentFunction) => currentFunction(currentValue),

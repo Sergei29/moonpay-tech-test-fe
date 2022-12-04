@@ -20,6 +20,11 @@ type Props = {
   currentTotal: number
 }
 
+/**
+ * @description controls to operate the display currencies list: filter, sort etc.
+ * @param {object} props bearing list current display state and handler functions
+ * @returns {JSX.Element} controls markup
+ */
 const CurrenciesControls = ({
   isAllowedInUs,
   isSupportedInTestMode,

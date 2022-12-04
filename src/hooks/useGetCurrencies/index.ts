@@ -42,7 +42,7 @@ export const useGetCurrencies = () => {
 
   /**
    * @description an effect to reset the boolean state back to `false`
-   * in order to acheive one-off shuffle action - however the approach is open to debate, reset state within the functions handlers above for example or other...
+   * in order to acheive one-off shuffle action - however the approach is open to debate, VS reset state within the functions handlers above for example or other...
    */
   useEffect(() => {
     setIsRandomShuffle(false)

@@ -12,11 +12,11 @@ import { Currency } from "@/types"
 import { isEmpty } from "@/lib/api"
 
 /**
- * @description aggregates text values for JSX part for the component
+ * @description aggregates text content for the currency component
  * @param {object}  optionalPropValues object bearing optional boolean flags
  * @returns {object} object bearing text values
  */
-const getTextContent = ({
+const getCurrencyTextContent = ({
   isSupportedInUS,
   supportsTestMode,
 }: {
@@ -46,7 +46,7 @@ type Props = {
  */
 const CurrencyCard = ({ currencyItem }: Props): JSX.Element => {
   const { name, type, code, isSupportedInUS, supportsTestMode } = currencyItem
-  const { supportedInUSText, supportsTestModeText } = getTextContent({
+  const { supportedInUSText, supportsTestModeText } = getCurrencyTextContent({
     isSupportedInUS,
     supportsTestMode,
   })
